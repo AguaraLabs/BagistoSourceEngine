@@ -1,0 +1,26 @@
+{
+    "name": "aguaralabs/promote-for-bagisto",
+    "license": "MIT",
+    "description" : "Admin package",
+    "authors": [
+        {
+            "name": "Gabriel Gamarra",
+            "email": "gabriel@aguaralabs.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Aguaralabs\\Promote\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aguaralabs\\Promote\\Providers\\PromoteServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}

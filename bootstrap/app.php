@@ -35,6 +35,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->append(SecureHeaders::class);
         $middleware->append(CanInstall::class);
+        $middleware->appendToGroup('web', [
+            \App\Http\Middleware\RedirectLegacyView::class
+        ]);
 
         /**
          * Add the overridden middleware at the end of the list.
@@ -42,7 +45,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->replaceInGroup('web', BaseEncryptCookies::class, EncryptCookies::class);
     })
     ->withSchedule(function (Schedule $schedule) {
-        //
+        $schedule->command('queue:restart')->hourly();
+
+        $schedule->command('queue:work --sleep=3 --tries=3 --max-time=300 --stop-when-empty')
+            ->everyFiveMinutes()
+            ->withoutOverlapping();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

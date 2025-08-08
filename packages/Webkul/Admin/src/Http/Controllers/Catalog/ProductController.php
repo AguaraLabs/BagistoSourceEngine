@@ -92,6 +92,7 @@ class ProductController extends Controller
             'sku'                 => ['required', 'unique:products,sku', new Slug],
             'super_attributes'    => 'array|min:1',
             'super_attributes.*'  => 'array|min:1',
+            'images.files.*'       => ['nullable', 'mimes:bmp,jpeg,jpg,png,webp'],
         ]);
 
         if (

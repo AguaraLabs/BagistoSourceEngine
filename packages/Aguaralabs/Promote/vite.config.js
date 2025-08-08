@@ -18,16 +18,15 @@ export default defineConfig(({ mode }) => {
         server: {
             host: process.env.VITE_HOST || "localhost",
             port: process.env.VITE_PORT || 5173,
-            cors: true,
         },
 
         plugins: [
             vue(),
 
             laravel({
-                hotFile: "../../../public/admin-default-vite.hot",
+                hotFile: "../../../public/promote-default-vite.hot",
                 publicDirectory: "../../../public",
-                buildDirectory: "themes/admin/default/build",
+                buildDirectory: "themes/promote/default/build",
                 input: [
                     "src/Resources/assets/css/app.css",
                     "src/Resources/assets/js/app.js",
